@@ -1,8 +1,15 @@
-42-test template
+42-test task
 ===========================
 
-A Django 1.6+ project template
+### Installation
+1. create and active your virtualenviroment (tested on Python 3.4)
+2. ``make syncdb`` - sync datavase
+3. ``make test`` - run tests
+4. ``make load`` - load fixtures
+5. ``make run`` - run server
 
+
+A Django 1.6+ project template
 Use fortytwo_test_task.settings when deploying with getbarista.com
 
 ### Recomendations

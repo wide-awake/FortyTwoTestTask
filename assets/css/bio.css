@@ -1,0 +1,16 @@
+ul {
+    padding-left: 0;
+}
+ul li {
+    list-style: none;
+}
+
+ul li span {
+    color: #a6a6a6;
+    margin-right: 10px;
+}
+
+.biogrphy {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

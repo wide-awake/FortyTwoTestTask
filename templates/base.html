@@ -1,22 +1,30 @@
-{% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>{% block title %}{% endblock title %}Site Name</title>
+{% load static %}
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+	<link href="{% static 'css/screen.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
 
-        <meta http-equiv="X-UA-Compatible" content="chrome=IE7" />
+	{% block extra_head %}{% endblock %}
+  </head>
+  <body>
 
-        <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
-        <meta name="apple-mobile-web-app-capable" content="yes"/>
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <div class="container">
+	  {% block content %}
+	  {% endblock %}
+  </div>
 
-        <link rel="stylesheet" href="{% static 'css/screen.css' %}" media="screen, projection"/>
+  <footer class="footer">
+      <div class="container">
+	      <p class="text-muted">2015 © 42 Coffee Cups Test Assignment.
+		      By Yanik Koval <a href="https://github.com/wide-awake" target="_blank" style="color: black">ツ</a>
+	      </p>
+      </div>
+  </footer>
 
-        {% block extra_head %}{% endblock extra_head %}
-
-    </head>
-    <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
-        {% block content %}{% endblock content %}
-    </body>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+  </body>
 </html>

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+	<link href="{% static 'css/bio.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+	<div class="page-header">
+        <h1>{{ object.first_name }} {{ object.last_name }}</h1>
+    </div>
+	<p class="lead">Personal biography page</p>
+	<ul>
+		<li><span>First Name:</span>{{ object.first_name }}</li>
+		<li><span>Last Name:</span>{{ object.last_name }}</li>
+		<li><span>Datte Of Birth:</span>{{ object.date_of_birth }}</li>
+		<li class="biogrphy"><span>Biography:</span>{{ object.bio }}</li>
+		<li><span>Email:</span>{{ object.email }}</li>
+		<li><span>Jabber:</span>{{ object.jabber }}</li>
+		<li><span>Skype:</span>{{ object.skype }}</li>
+		<li><span>Other:</span>{{ object.other }}</li>
+	</ul>
+
+{% endblock %}
