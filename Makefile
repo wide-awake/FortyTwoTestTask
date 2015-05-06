@@ -16,3 +16,9 @@ migrate:
 collectstatic:
 	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) collectstatic --noinput
 .PHONY: test syncdb migrate
+
+_requirements:
+	@echo "Installing requirements"
+	@pip install --exists-action=s -r requirements.txt
+
+req: _requirements
