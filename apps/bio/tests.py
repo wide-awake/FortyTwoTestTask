@@ -13,6 +13,6 @@ class BioTestCase(TestCase):
         pass
 
     def test_page_status(self):
-        url = reverse('bio:homepage')
+        url = reverse('bio:single')
         r = self.client.get(url)
         self.assertEqual(r.status_code, 200)

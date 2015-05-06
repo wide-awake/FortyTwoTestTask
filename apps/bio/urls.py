@@ -1,6 +1,7 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
+from .views import single
 
 urlpatterns = [
-    url(r'^$', 'bio.urls', name='bio'),
+    url(r'^$', single, name='single')
 ]

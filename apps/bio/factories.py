@@ -25,18 +25,18 @@ class PersonFactory(factory.DjangoModelFactory):
     def bio(self):
         return lorem_ipsum.sentence()
 
-    @factory.lazy_attribute_sequence
+    @factory.lazy_attribute
     def email(self):
         return '{}_{}@example.com'.format(self.first_name, self.last_name)
 
-    @factory.lazy_attribute_sequence
+    @factory.lazy_attribute
     def jabber(self):
         return self.email
 
-    @factory.lazy_attribute_sequence
+    @factory.lazy_attribute
     def skype(self):
         return '{}_{}'.format(self.first_name, self.last_name)
 
-    @factory.lazy_attribute_sequence
+    @factory.lazy_attribute
     def other(self):
         return lorem_ipsum.sentence()
