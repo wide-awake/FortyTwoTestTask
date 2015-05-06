@@ -7,7 +7,8 @@ from .models import Person
 
 
 class PersonFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = Person
+    class Meta:
+        model = Person
 
     @factory.lazy_attribute
     def first_name(self):
@@ -27,7 +28,7 @@ class PersonFactory(factory.DjangoModelFactory):
 
     @factory.lazy_attribute
     def email(self):
-        return '{}_{}@example.com'.format(self.first_name, self.last_name)
+        return '{}_{}@example.com'.format(self.first_name.lower(), self.last_name.lower())
 
     @factory.lazy_attribute
     def jabber(self):
@@ -35,7 +36,7 @@ class PersonFactory(factory.DjangoModelFactory):
 
     @factory.lazy_attribute
     def skype(self):
-        return '{}_{}'.format(self.first_name, self.last_name)
+        return '{}_{}'.format(self.first_name.lower(), self.last_name.lower())
 
     @factory.lazy_attribute
     def other(self):

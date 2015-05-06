@@ -22,3 +22,7 @@ _requirements:
 	@pip install --exists-action=s -r requirements.txt
 
 req: _requirements
+
+load:
+	@echo "Loading fixtures..."
+	@python manage.py shell < fixture_load.py

@@ -10,9 +10,17 @@ from .models import Person
 class BioTestCase(TestCase):
 
     def setUp(self):
-        pass
+        Person.objects.all().delete()
 
-    def test_page_status(self):
+    def test_person_context_and_template(self):
+        p = PersonFactory()
+        p.save()
         url = reverse('bio:single')
-        r = self.client.get(url)
-        self.assertEqual(r.status_code, 200)
+        response = self.client.get(url)
+        person_context = response.context['object']
+        # check page status code
+        self.assertEqual(response.status_code, 200)
+        # check we've used the right template
+        self.assertTemplateUsed(response, 'bio/person.html')
+        # check if person data in context
+        self.assertEqual(p, person_context)
