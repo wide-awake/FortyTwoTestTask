@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block extra_head %}
+	<link href="{% static 'css/activity.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+	<div class="page-header">
+        <h1>Http Requests Hisoury</h1>
+    </div>
+	<p class="lead">Last N website requets data</p>
+
+	<ul>
+	{% for req in object_list %}
+		<li>
+			<ul>
+				<li><strong>Date:</strong> {{ req.date }}</li>
+				<li><strong>Method:</strong> {{ req.method }} </li>
+			</ul>
+		</li>
+	{% endfor %}
+	</ul>
+
+
+{% endblock %}

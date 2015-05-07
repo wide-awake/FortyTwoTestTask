@@ -10,8 +10,6 @@ run:
 syncdb:
 	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) syncdb --noinput
 
-migrate:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) migrate
 
 collectstatic:
 	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) collectstatic --noinput
@@ -25,4 +23,4 @@ req: _requirements
 
 load:
 	@echo "Loading fixtures..."
-	@python manage.py shell < fixture_load.py
+	@python manage.py shell < fixtures_load.py
