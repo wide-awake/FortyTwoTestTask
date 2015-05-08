@@ -1,10 +1,12 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static swampdragon_tags %}
 
 {% block title %}{% endblock %}
 
 {% block extra_head %}
 	<link href="{% static 'css/activity.css' %}" rel="stylesheet">
+	{% swampdragon_settings %}
+	<script src="{% static 'js/socket.js' %}"></script>
 {% endblock %}
 
 
@@ -21,5 +23,11 @@
 	{% endfor %}
 	</ul>
 
+	<script>
+        console.log(window.swampdragon_settings.foo); // output bar
+	</script>
 
+{% endblock %}
+
+{% block extra_body %}
 {% endblock %}
