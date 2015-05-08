@@ -9,3 +9,4 @@ from .models import HttpRequest
 class HttpRequestFactory(factory.DjangoModelFactory):
 
     FACTORY_FOR = HttpRequest
+

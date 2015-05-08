@@ -13,5 +13,5 @@ class HttpRequest(models.Model):
         return "[{}] at {} for {}".format(self.method, self.date, self.url)
 
     class Meta:
-        ordering = ['date']
+        ordering = ['-date']
 

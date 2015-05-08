@@ -12,16 +12,12 @@
 	<div class="page-header">
         <h1>Http Requests Hisoury</h1>
     </div>
-	<p class="lead">Last N website requets data</p>
+	<p class="lead">Last <strong>42</strong> website requets</p>
 
-	<ul>
+	<ul class="requests">
 	{% for req in object_list %}
-		<li>
-			<ul>
-				<li><strong>Date:</strong> {{ req.date }}</li>
-				<li><strong>Method:</strong> {{ req.method }} </li>
-			</ul>
-		</li>
+		{#  inspired by PyCharm console ^^ #}
+		<li><span class="request_date">{{ req.date}}</span> "{{ req.method }} {{ req.url }} {{ server_protocol }}" {{ req.status_code }} {{ req.content_len }}</li>
 	{% endfor %}
 	</ul>
 
