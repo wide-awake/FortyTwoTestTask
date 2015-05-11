@@ -1,5 +1,4 @@
-setuptools>=0.8
 Django==1.6.7
-factory-boy==2.5.2
+factory-boy==2.1.1
 # -e git://github.com/rbarrois/factory_boy#egg=factory-boy
 swampdragon
