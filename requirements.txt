@@ -1,4 +1,4 @@
-setuptools
+setuptools>=15.2
 Django==1.6.7
 factory-boy==2.5.2
 # -e git://github.com/rbarrois/factory_boy#egg=factory-boy
