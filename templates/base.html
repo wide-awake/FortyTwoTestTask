@@ -6,9 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Base Styles -->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 	<link href="{% static 'css/screen.css' %}" rel="stylesheet">
-    <script src="{% static 'js/jquery.min.js' %}"></script>
 
 	{% block extra_head %}{% endblock %}
   </head>
@@ -27,23 +28,6 @@
       </div>
   </footer>
 
-
-	  <!-- Bootstrap core JavaScript
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}libs/angular-1.2.6/angular.min.js?v=1"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}libs/angular-1.2.6/angular-route.min.js?v=1"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}libs/angular-1.2.6/angular-cookies.min.js?v=1"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}libs/angular-1.2.6/angular-resource.min.js?v=1"></script>
-
-	{% swampdragon_settings %}
-	<script type="text/javascript" src="{{ STATIC_URL }}swampdragon/js/dist/swampdragon.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}swampdragon/js/dist/datamapper.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}swampdragon/js/angular/services.js?v=1"></script>
-
-	<script type="text/javascript" src="{{ STATIC_URL }}js/app.js?v={% now 'U' %}"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}js/company-controllers.js?v=1"></script>
-  </body>
+  {% block extra_body %}{% endblock %}
+</body>
 </html>

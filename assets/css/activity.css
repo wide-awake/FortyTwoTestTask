@@ -1,8 +1,8 @@
-.requests {
+#httprequests {
     padding-left: 0 !important;
 }
 
-.requests li {
+#httprequests li {
     list-style: none;
     margin-bottom: 5px;
     font-size: 1.1em;

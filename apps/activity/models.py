@@ -6,6 +6,7 @@ from .serializers import HttpRequestSerializer
 
 class HttpRequest(SelfPublishModel, models.Model):
     serializer_class = HttpRequestSerializer
+
     date = models.DateTimeField("Request time", auto_now=True, auto_now_add=True)
     method = models.CharField("Request method", max_length=16)
     server_protocol = models.CharField(max_length=16)
@@ -16,6 +17,13 @@ class HttpRequest(SelfPublishModel, models.Model):
     def __str__(self):
         return "[{}] at {} for {}".format(self.method, self.date, self.url)
 
+    @property
+    def overall(self):
+        return len(HttpRequest.objects.all())
+
+    @property
+    def date_formated(self):
+        return self.date.strftime("%c")
+
     class Meta:
         ordering = ['-date']
-

@@ -1,33 +1,29 @@
 {% extends "base.html" %}
 {% load static swampdragon_tags %}
 
-{% block title %}{% endblock %}
+{% block title %}
+	{{ object_list.0.overall }} requests so far
+{% endblock %}
 
 {% block extra_head %}
 	<link href="{% static 'css/activity.css' %}" rel="stylesheet">
-	{% swampdragon_settings %}
-	<script src="{% static 'js/socket.js' %}"></script>
 {% endblock %}
-
 
 {% block content %}
 	<div class="page-header">
         <h1>Http Requests Hisoury</h1>
     </div>
-	<p class="lead">Last <strong>42</strong> website requets</p>
-
-	<ul class="requests">
+	<p class="lead">Last <span id="requests_to_show"></span> website requets of <strong id="overall">{{ object_list.0.overall }}</strong> overall</p>
+	<ul id="httprequests">
 	{% for req in object_list %}
-		{#  inspired by PyCharm console ^^ #}
-		<li><span class="request_date">{{ req.date}}</span> "{{ req.method }} {{ req.url }} {{ server_protocol }}" {{ req.status_code }} {{ req.content_len }}</li>
+		<li><span class="request_date">{{ req.date_formated }}</span> "{{ req.method }} {{ req.url }} {{ req.server_protocol }}"{{ req.status_code }} {{ req.content_len }}</li>
 	{% endfor %}
 	</ul>
-
-	<script>
-        console.log(window.swampdragon_settings.foo); // output bar
-	</script>
 
 {% endblock %}
 
 {% block extra_body %}
+	{% swampdragon_settings %}
+	<script type="text/javascript" src="{% static 'swampdragon/js/dist/swampdragon.min.js' %}"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/activity.js"></script>
 {% endblock %}
