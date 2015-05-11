@@ -135,5 +135,5 @@ SWAMP_DRAGON_CONNECTION = ('swampdragon.connections.sockjs_connection.DjangoSubs
 DRAGON_URL = 'http://localhost:9999/'
 
 SWAMP_DRAGON = {
-    'request_to_show': 25,
+    'request_to_show': 20,
 }
