@@ -28,7 +28,10 @@ class PersonFactory(factory.DjangoModelFactory):
 
     @factory.lazy_attribute
     def email(self):
-        return '{}_{}@example.com'.format(self.first_name.lower(), self.last_name.lower())
+        return '{}_{}@example.com'.format(
+            self.first_name.lower(),
+            self.last_name.lower()
+        )
 
     @factory.lazy_attribute
     def jabber(self):

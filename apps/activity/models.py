@@ -7,7 +7,7 @@ from .serializers import HttpRequestSerializer
 class HttpRequest(SelfPublishModel, models.Model):
     serializer_class = HttpRequestSerializer
 
-    date = models.DateTimeField("Request time", auto_now=True, auto_now_add=True)
+    date = models.DateTimeField(auto_now=True, auto_now_add=True)
     method = models.CharField("Request method", max_length=16)
     server_protocol = models.CharField(max_length=16)
     status_code = models.IntegerField()
