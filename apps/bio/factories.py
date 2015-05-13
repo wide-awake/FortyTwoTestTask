@@ -8,7 +8,8 @@ from .models import Person
 
 class PersonFactory(factory.DjangoModelFactory):
 
-    FACTORY_FOR = Person
+    class Meta:
+        model = Person
 
     @factory.lazy_attribute
     def first_name(self):
