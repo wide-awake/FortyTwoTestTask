@@ -41,7 +41,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'swampdragon',
     'bio',
+    'activity',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,6 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'activity.middlware.ReqCatchMiddleware',
 )
 
 ROOT_URLCONF = 'fortytwo_test_task.urls'
@@ -125,3 +128,12 @@ TEMPLATE_DIRS = (
 
 # Turn off south during test
 SOUTH_TESTS_MIGRATE = False
+
+# SwampDragon settings
+SWAMP_DRAGON_CONNECTION = ('swampdragon.connections.sockjs_connection.DjangoSubscriberConnection', '/data')
+
+DRAGON_URL = 'http://localhost:9999/'
+
+SWAMP_DRAGON = {
+    'request_to_show': 20,
+}

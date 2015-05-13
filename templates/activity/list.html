@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static swampdragon_tags %}
+
+{% block title %}
+	{{ object_list.0.overall }} requests so far
+{% endblock %}
+
+{% block extra_head %}
+	<link href="{% static 'css/activity.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+	<div class="page-header">
+        <h1>Http Requests Hisoury</h1>
+    </div>
+	<p class="lead">Last <span id="requests_to_show"></span> website requets of <strong id="overall">{{ object_list.0.overall }}</strong> overall</p>
+	<ul id="httprequests">
+	{% for req in object_list %}
+		<li><span class="request_date">{{ req.date_formated }}</span> "{{ req.method }} {{ req.url }} {{ req.server_protocol }}"{{ req.status_code }} {{ req.content_len }}</li>
+	{% endfor %}
+	</ul>
+
+{% endblock %}
+
+{% block extra_body %}
+	{% swampdragon_settings %}
+	<script type="text/javascript" src="{% static 'swampdragon/js/dist/swampdragon.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/activity.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,13 @@
+#httprequests {
+    padding-left: 0 !important;
+}
+
+#httprequests li {
+    list-style: none;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.request_date {
+    color: #666666;
+}
