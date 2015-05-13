@@ -16,3 +16,7 @@ migrate:
 collectstatic:
 	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) collectstatic --noinput
 .PHONY: test syncdb migrate
+
+load:
+	@echo "Loading a fixtures..."
+	@python manage.py shell < fixtures_load.py
