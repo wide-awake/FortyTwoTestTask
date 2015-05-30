@@ -34,3 +34,13 @@ class BioBaseTestCase(TestCase):
         response = self.client.get(url)
         # check page status code
         self.assertEqual(response.status_code, 200)
+
+
+class BioFormTestCase(TestCase):
+
+    def setUp(self):
+        pass
+
+    def test_math(self):
+        # check if math still works :)
+        self.assertEqual(2+2, 4)
