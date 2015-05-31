@@ -7,6 +7,9 @@
     </div>
     <p class="msg"></p>
     <form id="bio_form" action="{% url "bio:ajax-update" %}" method="post">{% csrf_token %}
+        <div class="input-group">
+            {{ form.first_name }}
+        </div>
 	    {{ form.as_p }}
         <button type="submit">Save</button>
         <a href="/">Cancel</a>

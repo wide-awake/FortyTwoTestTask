@@ -1,4 +1,3 @@
-from __future__ import print_function
 from django import forms
 
 from .models import Person
