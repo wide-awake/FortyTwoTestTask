@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block extra_head %}
+	<script src="http://malsup.github.com/jquery.form.js"></script>
 	<link href="{% static 'css/bio.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -20,5 +21,5 @@
 		<li><span>Skype:</span>{{ object.skype }}</li>
 		<li><span>Other:</span>{{ object.other }}</li>
 	</ul>
-
+	<a href="{% url "bio:edit" %}">Edit Data</a>
 {% endblock %}

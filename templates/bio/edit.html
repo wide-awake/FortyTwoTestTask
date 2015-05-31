@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Edit personal data</h1>
+    </div>
+    <p class="msg"></p>
+    <form id="bio_form" action="{% url "bio:ajax-update" %}" method="post">{% csrf_token %}
+	    {{ form.as_p }}
+        <button type="submit">Save</button>
+        <a href="/">Cancel</a>
+        <img src="{% static 'img/loading.gif' %}" id="loader" alt="" style="display:none"/>
+    </form>
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript">
+    var frm = $('#bio_form');
+    frm.submit(function (ev) {
+        $('#loader').show(); //<----here
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                $('#loader').hide()
+                $('.msg').text("Changes have been saved!")
+            }
+        });
+
+        ev.preventDefault();
+    });
+</script>
+{% endblock %}
