@@ -43,9 +43,10 @@ class PersonFormTestCase(TestCase):
         self.p = PersonFactory()
         self.p.save()
 
-    def test_form(self):
-        update_url = reverse('bio:edit')
-        r = self.client.get(update_url)
+    def test_form_saving(self):
+        form_url = reverse('bio:edit')
+        ajax_url = reverse('bio:ajax-update')
+        r = self.client.get(form_url)
         data = r.context['form'].initial
         # generate new data
         new_data = PersonFactory()
@@ -59,15 +60,20 @@ class PersonFormTestCase(TestCase):
         data['skype'] = new_data.skype
         data['other'] = new_data.other
         # post to the form
-        r = self.client.post(update_url, data)
-        # retrieve again
-        r = self.client.get(update_url)
-        # self.assertContains(r, 'updated_value')
-        self.assertEqual(r.context['form'].initial['first_name'], new_data.first_name)
-        self.assertEqual(r.context['form'].initial['last_name'], new_data.last_name)
-        self.assertEqual(r.context['form'].initial['date_of_birth'], new_data.date_of_birth)
-        self.assertEqual(r.context['form'].initial['bio'], new_data.bio)
-        self.assertEqual(r.context['form'].initial['email'], new_data.email)
-        self.assertEqual(r.context['form'].initial['jabber'], new_data.jabber)
-        self.assertEqual(r.context['form'].initial['skype'], new_data.skype)
-        self.assertEqual(r.context['form'].initial['other'], new_data.other)
+        r = self.client.post(ajax_url, data)
+        self.assertEqual(r.status_code, 200)
+        # retrieve from DB abd check if data was saved
+        instance = Person.objects.all()[0]
+        self.assertEqual(instance.first_name, new_data.first_name)
+        self.assertEqual(instance.last_name, new_data.last_name)
+        self.assertEqual(instance.date_of_birth, new_data.date_of_birth)
+        self.assertEqual(instance.bio, new_data.bio)
+        self.assertEqual(instance.email, new_data.email)
+        self.assertEqual(instance.jabber, new_data.jabber)
+        self.assertEqual(instance.skype, new_data.skype)
+        self.assertEqual(instance.other, new_data.other)
+
+    def test_form_page_status(self):
+        form_url = reverse('bio:edit')
+        response = self.client.get(form_url)
+        self.assertEqual(response.status_code, 200)
