@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import FormView
 from django.forms.models import model_to_dict
@@ -33,8 +33,12 @@ def ajax_update(request):
 
 
 class PersonEdit(FormView):
+
+    def __init__(self, *args, **kwargs):
+        super(PersonEdit, self).__init__(*args, **kwargs)
+        self.initial = model_to_dict(Person.objects.first())
+
     form_class = PersonForm
     template_name = 'bio/edit.html'
-    initial = model_to_dict(Person.objects.all()[0])
     success_url = reverse_lazy("bio:single")
 

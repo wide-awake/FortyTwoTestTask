@@ -1,5 +1,6 @@
 ul {
     padding-left: 0;
+    font-size: 1.1em;
 }
 ul li {
     list-style: none;
@@ -22,4 +23,8 @@ ul li span {
     background: black url('/static/img/loading.gif') no-repeat center center; }
 #bio_form {
     margin-bottom: 50px;
+}
+#photo-preview {
+    max-height: 410px;
+    max-width: 295px;
 }

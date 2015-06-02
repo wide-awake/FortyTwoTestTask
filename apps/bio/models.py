@@ -10,6 +10,7 @@ class Person(models.Model):
     jabber = models.CharField(max_length=255)
     skype = models.CharField(max_length=255)
     other = models.TextField()
+    photo = models.ImageField(upload_to='uploads/', null=True, blank=True)
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
