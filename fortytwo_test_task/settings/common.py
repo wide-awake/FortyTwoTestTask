@@ -88,7 +88,7 @@ USE_TZ = True
 # Upload Media
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -129,6 +129,8 @@ TEMPLATE_DIRS = (
 
 #
 LOGIN_URL = "/admin"
+
+LOGIN_REDIRECT_URL = '/edit'
 
 # Turn off south during test
 SOUTH_TESTS_MIGRATE = False

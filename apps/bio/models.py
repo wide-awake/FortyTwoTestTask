@@ -1,5 +1,6 @@
 from django.db import models
 
+from utils.generate_upload_name import generate_upload_name
 
 class Person(models.Model):
     first_name = models.CharField(max_length=255)
@@ -10,7 +11,7 @@ class Person(models.Model):
     jabber = models.CharField(max_length=255)
     skype = models.CharField(max_length=255)
     other = models.TextField()
-    photo = models.ImageField(upload_to='uploads/', null=True, blank=True)
+    photo = models.ImageField(upload_to='%Y/%m/%d', null=True)
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
