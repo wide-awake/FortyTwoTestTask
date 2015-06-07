@@ -3,6 +3,8 @@
 
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/bio.css' %}"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -11,7 +13,7 @@
     </div>
     <div class="msg"></div>
 
-    <form class="form-horizontal" id="bio_form" action="{% url "bio:ajax-update" %}" method="post">{% csrf_token %}
+    <form class="form-horizontal" id="bio_form" action="{% url "bio:ajax-update" %}" enctype="multipart/form-data" method="post">{% csrf_token %}
     <fieldset>
     <div class="col-md-6">
         <div class="form-group">
@@ -38,13 +40,14 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="id_photo">Photo</label>
             <div class="col-md-8">
-                <input id="id_photo" name="id_photo" class="input-file" type="file">
+{#              <input id="id_photo" name="id_photo" class="input-file" type="file">#}
+	            {{ form.photo|addcss:"input-file"}}
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-12">
-                <img id="photo-preview" src="{% static "img/300x410.gif" %}" alt="Photo Preview"/>
+                <img id="photo-preview" class="pull-right" src="{% if form.photo.value == ''%}{% static "img/300x410.gif" %}{% else %}{{ MEDIA_URL }}{{ form.photo.value }}{% endif %}" alt="Photo Preview"/>
             </div>
         </div>
     </div><!-- .col-md-6 -->

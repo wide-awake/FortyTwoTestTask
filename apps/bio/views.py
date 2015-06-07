@@ -1,3 +1,4 @@
+from __future__ import print_function
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import FormView
@@ -16,20 +17,14 @@ def single(request):
 
 
 def ajax_update(request):
-    # TODO: remove this in production
-    if settings.DEBUG:
-        import time
-        time.sleep(2)
-
-    instance = Person.objects.all()[0]
-    try:
-        for attr, value in request.POST.iteritems():
-            setattr(instance, attr, value)
-        instance.save()
-    except IndexError:
-        return HttpResponse(status=400)
-
-    return HttpResponse(status=200)
+    p = Person.objects.all()[0]
+    if request.POST:
+        form = PersonForm(request.POST, request.FILES, instance=p)
+        if form.is_valid():
+            p = form.save(commit=False)
+            p.save()
+        return HttpResponse(status=200)
+    return HttpResponse(status=404)
 
 
 class PersonEdit(FormView):

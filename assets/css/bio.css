@@ -25,6 +25,6 @@ ul li span {
     margin-bottom: 50px;
 }
 #photo-preview {
-    max-height: 410px;
-    max-width: 295px;
+    max-height: 200px;
+    max-width: 200px;
 }
