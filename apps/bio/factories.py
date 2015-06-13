@@ -2,6 +2,7 @@ from datetime import date
 
 import factory
 from django.contrib.webdesign import lorem_ipsum
+from django.core.files.base import ContentFile
 
 from .models import Person
 
@@ -47,3 +48,11 @@ class PersonFactory(factory.DjangoModelFactory):
     @factory.lazy_attribute
     def other(self):
         return lorem_ipsum.sentence()
+
+    @factory.lazy_attribute
+    def photo(self):
+        return ContentFile(
+                factory.django.ImageField()._make_data(
+                    {'width': 200, 'height': 200}
+                ), 'example.jpg'
+            )

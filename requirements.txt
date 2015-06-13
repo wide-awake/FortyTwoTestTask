@@ -4,3 +4,4 @@ swampdragon==0.4.2
 # flake8
 # mock
 redis>=2.10.3
+pillow

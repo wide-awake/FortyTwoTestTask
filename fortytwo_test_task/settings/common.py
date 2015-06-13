@@ -26,10 +26,10 @@ SECRET_KEY = 'x=c0_e(onjn^80irdy2c221#)2t^qi&6yrc$31i(&ti*_jf3l8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1',
+                 '46.101.181.20']
 
 
 # Application definition
@@ -55,6 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'activity.middlware.ReqCatchMiddleware',
 )
+
 
 ROOT_URLCONF = 'fortytwo_test_task.urls'
 
@@ -87,7 +88,7 @@ USE_TZ = True
 # Upload Media
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -126,6 +127,11 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
+#
+LOGIN_URL = "/admin"
+
+LOGIN_REDIRECT_URL = '/edit'
+
 # Turn off south during test
 SOUTH_TESTS_MIGRATE = False
 
@@ -136,4 +142,32 @@ DRAGON_URL = 'http://localhost:9999/'
 
 SWAMP_DRAGON = {
     'request_to_show': 20,
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'NOTSET',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'NOTSET',
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'propagate': False,
+            'level': 'ERROR'
+        }
+    }
 }

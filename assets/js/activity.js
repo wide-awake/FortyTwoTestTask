@@ -1,5 +1,5 @@
 // This have nothing to do with activity.js
-// Just more pythonic way to format strings in JS
+// Just more pythonic way to format strings
 // TODO: move this away
 String.prototype.format = function() {
     var formatted = this;
