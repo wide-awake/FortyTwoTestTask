@@ -34,8 +34,6 @@ class PersonEdit(FormView):
         super(PersonEdit, self).__init__(*args, **kwargs)
         self.initial = model_to_dict(Person.objects.first())
 
-    # initial = model_to_dict(Person.objects.all()[0])
     form_class = PersonForm
     template_name = 'bio/edit.html'
-    # success_url = reverse_lazy("bio:single")
 
