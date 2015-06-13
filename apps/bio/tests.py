@@ -52,8 +52,7 @@ class PersonFormTestCase(TestCase):
         admin.save()
 
     def test_admin_login(self):
-        c = Client()
-        self.assertEqual(c.login(username=self.user, password=self.password), True)
+        self.assertEqual(Client().login(username=self.user, password=self.password), True)
 
     def test_form_saving(self):
         form_url = reverse('bio:edit')
