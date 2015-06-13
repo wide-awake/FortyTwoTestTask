@@ -1,5 +1,7 @@
 from django.test import TestCase
+from django.test.client import Client
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 
 from .factories import PersonFactory
 from .models import Person
@@ -39,14 +41,27 @@ class BioBaseTestCase(TestCase):
 class PersonFormTestCase(TestCase):
 
     def setUp(self):
+        # reload person bio
         Person.objects.all().delete()
         self.p = PersonFactory()
         self.p.save()
+        # crete super user
+        self.user = 'admin'
+        self.password = self.user
+        admin = User.objects.create_superuser(self.user, 'e@e.com', self.password)
+        admin.save()
+
+    def test_admin_login(self):
+        c = Client()
+        self.assertEqual(c.login(username=self.user, password=self.password), True)
 
     def test_form_saving(self):
         form_url = reverse('bio:edit')
         ajax_url = reverse('bio:ajax-update')
-        r = self.client.get(form_url)
+        # log in to acscess page
+        c = Client()
+        c.login(username=self.user, password=self.password)
+        r = c.get(form_url)
         data = r.context['form'].initial
         # generate new data
         new_data = PersonFactory()
@@ -60,7 +75,7 @@ class PersonFormTestCase(TestCase):
         data['skype'] = new_data.skype
         data['other'] = new_data.other
         # post to the form
-        r = self.client.post(ajax_url, data)
+        r = c.post(ajax_url, data)
         self.assertEqual(r.status_code, 200)
         # retrieve from DB abd check if data was saved
         instance = Person.objects.all()[0]
@@ -74,6 +89,8 @@ class PersonFormTestCase(TestCase):
         self.assertEqual(instance.other, new_data.other)
 
     def test_form_page_status(self):
+        c = Client()
+        c.login(username=self.user, password=self.password)
         form_url = reverse('bio:edit')
-        response = self.client.get(form_url)
+        response = c.get(form_url)
         self.assertEqual(response.status_code, 200)

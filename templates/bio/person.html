@@ -20,7 +20,9 @@
 		<li><span>Jabber:</span>{{ object.jabber }}</li>
 		<li><span>Skype:</span>{{ object.skype }}</li>
 		<li><span>Other:</span>{{ object.other }}</li>
+		{% if object.photo %}
 		<li><span>Photo: <br/></span><img src="{{ object.photo.url }}" alt="{{ object.first_name }}'s photo"/></li>
+		{% endif %}
 	</ul>
 	<a href="{% url "bio:edit" %}">Edit Data</a>
 {% endblock %}
