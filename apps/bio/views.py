@@ -1,5 +1,5 @@
 from __future__ import print_function
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import FormView
 from django.forms.models import model_to_dict
@@ -11,14 +11,17 @@ from .models import Person
 from .forms import PersonForm
 
 
-def single(request):
+def single(request, **kwargs):
     p = Person.objects.all()[0]
+    print("kwargs: ", kwargs)
     return render_to_response('bio/person.html', {'object': p})
 
 
 def ajax_update(request):
     p = Person.objects.all()[0]
     if request.POST:
+        import time
+        time.sleep(3)
         form = PersonForm(request.POST, request.FILES, instance=p)
         if form.is_valid():
             p = form.save(commit=False)

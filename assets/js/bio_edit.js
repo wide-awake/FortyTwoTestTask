@@ -1,25 +1,21 @@
-//var frm = $('#bio_form');
-//frm.submit(function (ev) {
-//    ev.preventDefault();
-//
-//
-//    var formdata = new FormData(this);
-//    console.log("fd" + formdata);
-//    $.ajax({
-//        type: frm.attr('method'),
-//        url: frm.attr('action'),
-//        data: formdata,
-//        contentType: false,
-//        processData: false,
-//        success: function (data) {
-//            $('#loader').hide();
-//            $('html,body').scrollTop(0);
-//            $('.msg').html('<p class="alert alert-success" role="alert"><strong>Success!</strong> Changes have been saved!</p>');
-//        }
-//    });
-//});
+// handling form
+var bioForm = $('#bio_form');
 
-$('#bio_form').ajaxForm();
+var options = {
+    beforeSubmit: function(){
+        $('#bio_form :input').prop("disabled", true);
+        //$('#loader').show();
+    },
+    success: function(){
+        $('#bio_form :input').prop("disabled", false);
+        $('html,body').scrollTop(0);
+        $('#loader').hide();
+        $('.msg').html('<p class="alert alert-success" role="alert"><strong>Success!</strong> Changes have been saved!</p>');
+    }
+};
+
+bioForm.ajaxForm(options);
+
 
 // image preview from input
 function readURL(input) {
