@@ -25,7 +25,7 @@ class Person(models.Model):
             output = StringIO.StringIO()
             image.save(output, format='JPEG', quality=75)
             output.seek(0)
-            self.photo = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.photo.name, 'image/jpeg', output.len, None)
+            self.photo = InMemoryUploadedFile(output, 'ImageField', "%s" % self.photo.name, 'image/jpeg', output.len, None)
         super(Person, self).save(*args, **kwargs)
 
     def __str__(self):

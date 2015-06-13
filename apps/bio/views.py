@@ -20,8 +20,6 @@ def single(request, **kwargs):
 def ajax_update(request):
     p = Person.objects.all()[0]
     if request.POST:
-        import time
-        time.sleep(3)
         form = PersonForm(request.POST, request.FILES, instance=p)
         if form.is_valid():
             p = form.save(commit=False)
