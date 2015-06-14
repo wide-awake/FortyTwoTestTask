@@ -9,8 +9,14 @@
 5. ``make run`` - run server
 
 
-A Django 1.6+ project template
-Use fortytwo_test_task.settings when deploying with getbarista.com
+### Custom commands
+1. ``python manage.py models`` - displays all project models and the count of objects in every model
+
+
+### TODO
+1. make fabric works
+2. separate production, tests and local settings
+
 
 ### Recomendations
 * apps in apps/ folder
