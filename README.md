@@ -2,14 +2,20 @@
 ===========================
 
 ### Installation
-1. create and active your virtualenviroment (tested on Python 3.4)
+1. create and active your virtualenviroment (tested on Python 2.7)
+2. run ``redis-server`` (you shoid install redis first)
+3. run swampdragon ``python server.py``
+4. run project itself ``make run``
+
+
+### Make Commands
 2. ``make syncdb`` - sync datavase
 3. ``make test`` - run tests
 4. ``make load`` - load fixtures
 5. ``make run`` - run server
 
 
-### Custom commands
+### Django commands
 1. ``python manage.py models`` - displays all project models and the count of objects in every model
 
 
