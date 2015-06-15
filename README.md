@@ -3,7 +3,7 @@
 
 ### Installation
 1. create and active your virtualenviroment (tested on Python 2.7)
-2. run ``redis-server`` (you shoid install redis first)
+2. run ``redis-server`` (you shoud install redis first)
 3. run swampdragon ``python server.py``
 4. run project itself ``make run``
 
