@@ -2,10 +2,11 @@
 ===========================
 
 ### Installation
-1. create and active your virtualenviroment (tested on Python 2.7)
-2. run ``redis-server`` (you shoud install redis first)
-3. run swampdragon ``python server.py``
-4. run project itself ``make run``
+1. create and active your virtual environment (tested on Python 2.7)
+2. install requirements: ``make req``
+3. run ``redis-server`` (you should install redis first)
+4. run swampdragon server ``python server.py``
+5. run project itself ``make run``
 
 
 ### Make Commands
@@ -13,6 +14,7 @@
 3. ``make test`` - run tests
 4. ``make load`` - load fixtures
 5. ``make run`` - run server
+6. ``make req`` - install requirements 
 
 
 ### Django commands

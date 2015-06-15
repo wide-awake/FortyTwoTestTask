@@ -21,5 +21,6 @@ load:
 	@echo "Loading a fixtures..."
 	@python manage.py shell < fixtures_load.py
 
-errors:
-	@sh models_to_file.sh
+req:
+	@echo "Installing requirements"
+	@pip install --exists-action=s -r requirements.txt
