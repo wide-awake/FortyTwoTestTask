@@ -93,3 +93,15 @@ class PersonFormTestCase(TestCase):
         form_url = reverse('bio:edit')
         response = c.get(form_url)
         self.assertEqual(response.status_code, 200)
+
+
+class HelloAppTestCase(TestCase):
+
+    def setUp(self):
+        Person.objects.all().delete()
+        self.p = PersonFactory()
+        self.p.save()
+
+    def test_edit_link_templatetag(self):
+        r = self.client.get(reverse('bio:single'))
+        self.assertIn('admin/bio/person/1/', r.content)

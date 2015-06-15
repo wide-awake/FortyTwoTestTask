@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static edit_object %}
 
 {% block extra_head %}
 {#	<script src="http://malsup.github.com/jquery.form.js"></script>#}
@@ -22,5 +22,6 @@
 		<li><span>Other:</span>{{ object.other }}</li>
 		<li><span>Photo: <br/></span><img src="{{ object.photo.url }}" alt="{{ object.first_name }}'s photo"/></li>
 	</ul>
-	<a href="{% url "bio:edit" %}">Edit Data</a>
+	<a href="{% url "bio:edit" %}">Edit Data in Site</a><br/>
+	<a href="{% edit_link object %}">Edit Data in Dashboard</a>
 {% endblock %}
