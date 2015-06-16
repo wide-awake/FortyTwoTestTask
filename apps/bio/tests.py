@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
 from .factories import PersonFactory
-from .models import Person
+from .models import Person, ChangeLog
 
 
 class BioBaseTestCase(TestCase):
@@ -30,8 +30,7 @@ class BioBaseTestCase(TestCase):
         self.assertTemplateUsed(response, 'bio/person.html')
 
     def test_view(self):
-        p = PersonFactory()
-        p.save()
+        PersonFactory().save()
         url = reverse('bio:single')
         response = self.client.get(url)
         # check page status code
@@ -95,13 +94,42 @@ class PersonFormTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-class HelloAppTestCase(TestCase):
+class TemplateTagsTestCase(TestCase):
 
     def setUp(self):
         Person.objects.all().delete()
-        self.p = PersonFactory()
-        self.p.save()
+        PersonFactory().save()
 
     def test_edit_link_templatetag(self):
         r = self.client.get(reverse('bio:single'))
         self.assertIn('admin/bio/person/1/', r.content)
+
+
+class SignalTestCase(TestCase):
+    def setUp(self):
+        Person.objects.all().delete()
+        PersonFactory().save()
+
+    def test_signal_on_create(self):
+        p = PersonFactory()
+        count = ChangeLog.objects.all().count()
+        p.save()
+        new_count = ChangeLog.objects.all().count()
+        self.assertEqual(count + 1, new_count)
+
+    def test_signal_on_update(self):
+        PersonFactory().save()
+        p = Person.objects.first()
+        count = ChangeLog.objects.all().count()
+        p.first_name = 'Marshall Mathers'
+        p.save()
+        new_count = ChangeLog.objects.all().count()
+        self.assertEqual(count + 1, new_count)
+
+    def test_signal_on_delete(self):
+        PersonFactory().save()
+        p = Person.objects.first()
+        count = ChangeLog.objects.all().count()
+        p.delete()
+        new_count = ChangeLog.objects.all().count()
+        self.assertEqual(count + 1, new_count)
