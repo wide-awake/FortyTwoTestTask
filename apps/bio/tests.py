@@ -22,8 +22,7 @@ class BioBaseTestCase(TestCase):
         self.assertEqual(p, person_context)
 
     def test_template(self):
-        p = PersonFactory()
-        p.save()
+        PersonFactory().save()
         url = reverse('bio:single')
         response = self.client.get(url)
         # check we've used the right template

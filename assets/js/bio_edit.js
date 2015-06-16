@@ -28,3 +28,13 @@ function readURL(input) {
     }
 }
 $("#id_photo").change(function(){readURL(this);});
+
+
+// datepicker
+$(function() {
+    $( ".datepicker" ).datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "1915:2015",
+	    });
+});

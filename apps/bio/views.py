@@ -1,11 +1,9 @@
 from __future__ import print_function
-from django.shortcuts import render_to_response, redirect
-from django.core.urlresolvers import reverse_lazy
+from django.shortcuts import render_to_response
 from django.views.generic import FormView
 from django.forms.models import model_to_dict
 from django.http import HttpResponse
 
-from django.conf import settings
 
 from .models import Person
 from .forms import PersonForm
