@@ -33,7 +33,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="id_date_of_birth">Birthday</label>
             <div class="col-md-8">
-                {{ form.date_of_birth|addcss:"form-control input-md" }}
+                {{ form.date_of_birth|addcss:"form-control input-md datepicker" }}
             </div>
         </div>
 
@@ -102,4 +102,20 @@
 
 {% block extra_body %}
       <script type="text/javascript" src="{% static 'js/bio_edit.js' %}"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+
+	  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+	 <script>
+
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2012",
+      // You can put more options here.
+
+    });
+  });
+  </script>
 {% endblock %}
