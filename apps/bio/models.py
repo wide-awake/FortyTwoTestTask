@@ -14,7 +14,7 @@ class Person(models.Model):
     jabber = models.CharField(max_length=255)
     skype = models.CharField(max_length=255)
     other = models.TextField()
-    photo = models.ImageField(upload_to='%Y/%m/%d', null=True)
+    photo = models.ImageField(upload_to='/', null=True)
 
     def save(self, *args, **kwargs):
         if self.photo:
@@ -24,6 +24,14 @@ class Person(models.Model):
             image.save(output, format='JPEG', quality=75)
             output.seek(0)
             self.photo = InMemoryUploadedFile(output, 'ImageField', self.photo.name, 'image/jpeg', output.len, None)
+        # replace image instead
+        try:
+            current = Person.objects.get(id=self.id)
+            if current.photo != self.photo:
+                current.photo.delete(save=False)
+        except:
+            pass
+
         super(Person, self).save(*args, **kwargs)
 
     def __str__(self):
