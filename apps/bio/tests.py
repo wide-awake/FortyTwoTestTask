@@ -30,8 +30,7 @@ class BioBaseTestCase(TestCase):
         self.assertTemplateUsed(response, 'bio/person.html')
 
     def test_view(self):
-        p = PersonFactory()
-        p.save()
+        PersonFactory().save()
         url = reverse('bio:single')
         response = self.client.get(url)
         # check page status code
@@ -99,8 +98,7 @@ class TemplateTagsTestCase(TestCase):
 
     def setUp(self):
         Person.objects.all().delete()
-        self.p = PersonFactory()
-        self.p.save()
+        PersonFactory().save()
 
     def test_edit_link_templatetag(self):
         r = self.client.get(reverse('bio:single'))
@@ -110,18 +108,17 @@ class TemplateTagsTestCase(TestCase):
 class SignalTestCase(TestCase):
     def setUp(self):
         Person.objects.all().delete()
-        self.p = PersonFactory()
-        self.p.save()
+        PersonFactory().save()
 
     def test_signal_on_create(self):
         p = PersonFactory()
         count = ChangeLog.objects.all().count()
         p.save()
         new_count = ChangeLog.objects.all().count()
-        print(ChangeLog.objects.all())
         self.assertEqual(count + 1, new_count)
 
     def test_signal_on_update(self):
+        PersonFactory().save()
         p = Person.objects.first()
         count = ChangeLog.objects.all().count()
         p.first_name = 'Marshall Mathers'
@@ -130,6 +127,7 @@ class SignalTestCase(TestCase):
         self.assertEqual(count + 1, new_count)
 
     def test_signal_on_delete(self):
+        PersonFactory().save()
         p = Person.objects.first()
         count = ChangeLog.objects.all().count()
         p.delete()
