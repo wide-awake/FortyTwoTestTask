@@ -21,7 +21,7 @@ class PersonFactory(factory.DjangoModelFactory):
 
     @factory.lazy_attribute
     def date_of_birth(self):
-        return date.today().strftime('%Y-%m-%d')
+        return date.today()
 
     @factory.lazy_attribute
     def bio(self):

@@ -78,7 +78,7 @@ class PersonFormTestCase(TestCase):
         instance = Person.objects.all()[0]
         self.assertEqual(instance.first_name, new_data.first_name)
         self.assertEqual(instance.last_name, new_data.last_name)
-        self.assertEqual(instance.date_of_birth.strftime('%Y-%m-%d'), new_data.date_of_birth)
+        self.assertEqual(instance.date_of_birth, new_data.date_of_birth)
         self.assertEqual(instance.bio, new_data.bio)
         self.assertEqual(instance.email, new_data.email)
         self.assertEqual(instance.jabber, new_data.jabber)

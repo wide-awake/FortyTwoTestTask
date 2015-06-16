@@ -36,5 +36,6 @@ $(function() {
         changeMonth: true,
         changeYear: true,
         yearRange: "1915:2015",
+        dateFormat: "yy-mm-dd"
 	    });
 });
