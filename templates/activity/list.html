@@ -16,7 +16,7 @@
 	<p class="lead">Last <span id="requests_to_show"></span> website requets of <strong id="overall">{{ object_list.0.overall }}</strong> overall</p>
 	<ul id="httprequests">
 	{% for req in object_list %}
-		<li><span class="request_date">{{ req.date_formated }}</span> "{{ req.method }} {{ req.url }} {{ req.server_protocol }}"{{ req.status_code }} {{ req.content_len }}</li>
+		<li><mark>{{ req.priority }}</mark> <span class="request_date">{{ req.date_formated }}</span> "{{ req.method }} {{ req.url }} {{ req.server_protocol }}"{{ req.status_code }} {{ req.content_len }}</li>
 	{% endfor %}
 	</ul>
 

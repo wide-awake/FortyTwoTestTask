@@ -13,6 +13,7 @@ class HttpRequest(SelfPublishModel, models.Model):
     status_code = models.IntegerField()
     url = models.CharField("Request url", max_length=255)
     content_len = models.IntegerField()
+    priority = models.IntegerField(default=0, blank=False)
 
     def __str__(self):
         return "[{}] at {} for {}".format(self.method, self.date, self.url)
@@ -26,4 +27,4 @@ class HttpRequest(SelfPublishModel, models.Model):
         return self.date.strftime("%c")
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['-priority']

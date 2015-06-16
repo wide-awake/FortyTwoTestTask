@@ -14,7 +14,7 @@ class Person(models.Model):
     jabber = models.CharField(max_length=255)
     skype = models.CharField(max_length=255)
     other = models.TextField()
-    photo = models.ImageField(upload_to='/', null=True)
+    photo = models.ImageField(upload_to='photo/', null=True)
 
     def save(self, *args, **kwargs):
         if self.photo:
@@ -41,6 +41,7 @@ class Person(models.Model):
 class ChangeLog(models.Model):
     model_name = models.CharField(max_length=128)
     action = models.CharField(max_length=16)
+    updated = models.DateTimeField(auto_now=True, auto_now_add=True)
 
     def __str__(self):
         return "{} on {}".format(self.action, self.model_name)

@@ -13,7 +13,6 @@ from .forms import PersonForm
 
 def single(request, **kwargs):
     p = Person.objects.all()[0]
-    print("kwargs: ", kwargs)
     return render_to_response('bio/person.html', {'object': p})
 
 

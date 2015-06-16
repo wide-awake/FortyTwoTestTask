@@ -2,9 +2,11 @@ from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 
+from apps.bio.factories import PersonFactory
 from .models import HttpRequest
 from .middlware import ReqCatchMiddleware
 from .views import HttpRequestList
+
 
 
 class ActivityBaseTestCase(TestCase):
@@ -34,16 +36,21 @@ class ActivityBaseTestCase(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-
-class HttpRequestMiddlwareTest(TestCase):
-    def setUp(self):
-        self.middlware = ReqCatchMiddleware()
-        self.factory = RequestFactory()
-
-    def test_model_data(self):
+    def test_request_priority(self):
+        # create person for page rendering
+        PersonFactory().save()
+        # generate 3x http requests
+        url = reverse('bio:single')
+        r = self.client.get(url)
         url = reverse('activity:list')
-        request = self.factory.get(url)
-        # proceed middlware
-        #self.middlware.process_response(request, response)
-        # m = HttpRequest.objects.last()
-        # self.assertEqual(self.request.status_code, m['status_code'])
+        r = self.client.get(url)
+        url = reverse('bio:edit')
+        r = self.client.get(url)
+        # give the middle one the biggest priority
+        httpreq = HttpRequest.objects.all()[1]
+        httpreq.priority = 199
+        httpreq.save()
+        # check if element sorted by prioryty
+        self.assertEqual(HttpRequest.objects.first().priority, httpreq.priority)
+
+

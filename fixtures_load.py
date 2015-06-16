@@ -4,11 +4,11 @@ from apps.bio.factories import PersonFactory
 
 
 # load single person in database
-p = PersonFactory()
-p.save()
+PersonFactory().save()
 
 # creating superuser
 login = 'admin'
 password = login
-admin = User.objects.create_superuser(login, 'e@e.com', password)
-admin.save()
+User.objects.create_superuser(login, 'e@e.com', password).save()
+print("Firxtures loaded!")
+print("Admin user login/password: {}/{}".format(login, password))
