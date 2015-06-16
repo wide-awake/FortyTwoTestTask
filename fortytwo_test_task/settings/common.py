@@ -95,7 +95,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/uploads/'
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
@@ -104,6 +103,8 @@ MEDIA_URL = '/uploads/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+ADMIN_MEDIA_PREFIX = os.path.join(STATIC_ROOT, 'admin')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/

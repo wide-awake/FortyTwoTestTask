@@ -28,3 +28,11 @@ class Person(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+
+class ChangeLog(models.Model):
+    model_name = models.CharField(max_length=128)
+    action = models.CharField(max_length=16)
+
+    def __str__(self):
+        return "{} on {}".format(self.action, self.model_name)
