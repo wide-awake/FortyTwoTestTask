@@ -1,0 +1,35 @@
+[
+    {
+        "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2015-06-18T15:55:55.407Z",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$12000$tmy1hCZKL0Vs$Uobs17KwZLlXVc1pcAlQ6iZuPXDeNO+40e2/34pxnwI=",
+            "email": "admin@django.com.ua",
+            "date_joined": "2015-06-18T15:55:55.407Z"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "bio.person",
+        "fields": {
+            "first_name": "Yanik",
+            "last_name": "Koval",
+            "other": "Phone: +380980276691",
+            "skype": "stillslovn",
+            "date_of_birth": "1990-09-05",
+            "jabber": "copycat5@42cc.co",
+            "bio": "Donec id elit non mi porta gravida at eget metus. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Donec ullamcorper nulla non metus auctor fringilla.",
+            "email": "yanikkoval@yandex.com",
+            "photo": null
+        }
+    }
+]
