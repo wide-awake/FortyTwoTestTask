@@ -24,14 +24,7 @@ String.prototype.format = function() {
             type: "GET",
 	        data: {elements_so_far:  overall},
             success: function(data) {
-                console.log("we got: " + data);
-                console.log("type: " + typeof(data));
-	            console.log("old: " + overall);
-
                 var new_elements = (data.match(/<li>/g)  || []).length;
-                console.log("new " + new_elements);
-
-
 	            // Add the new request
                 if (new_elements > 0) {
                     var li = document.createElement("li");
@@ -50,16 +43,7 @@ String.prototype.format = function() {
             },
             //dataType: "json",
             complete: poll,
-            timeout: 5000
+            timeout: 2000
         })
-    }, 6000);
+    }, 3000);
 })();
-
-// Hightkight given element
-function highlightFor(element, color, seconds){
-    var origcolor = element.style.backgroundColor;
-    element.style.backgroundColor = color;
-    var t = setTimeout(function(){
-       element.style.backgroundColor = origcolor;
-    },(seconds*1000));
-}
