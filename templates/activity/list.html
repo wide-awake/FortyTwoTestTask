@@ -13,17 +13,22 @@
 	<div class="page-header">
         <h1>Http Requests Hisoury</h1>
     </div>
-	<p class="lead">Last <span id="requests_to_show"></span> website requets of <strong id="overall">{{ object_list.0.overall }}</strong> overall</p>
+	<p class="lead">Last 25 website requets of <strong id="overall">{{ object_list.0.overall }}</strong> overall</p>
 	<ul id="httprequests">
 	{% for req in object_list %}
-		<li><mark>{{ req.priority }}</mark> <span class="request_date">{{ req.date_formated }}</span> "{{ req.method }} {{ req.url }} {{ req.server_protocol }}"{{ req.status_code }} {{ req.content_len }}</li>
+		<li><mark>{{ req.pk }} | {{ req.priority }}</mark> <span class="request_date">{{ req.date_formated }}</span> "{{ req.method }} {{ req.url }} {{ req.server_protocol }}"{{ req.status_code }} {{ req.content_len }}</li>
 	{% endfor %}
 	</ul>
 
 {% endblock %}
 
 {% block extra_body %}
-	{% swampdragon_settings %}
-	<script type="text/javascript" src="{% static 'swampdragon/js/dist/swampdragon.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/activity.js' %}"></script>
+{#	{% swampdragon_settings %}#}
+{#	<script type="text/javascript" src="{% static 'swampdragon/js/dist/swampdragon.min.js' %}"></script>#}
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script>
+		var old_overall = {{ object_list.0.overall }};
+	</script>
+	<script type="text/javascript" src="{% static 'js/activity2.js' %}"></script>
 {% endblock %}

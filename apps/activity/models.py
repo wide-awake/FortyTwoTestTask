@@ -27,4 +27,4 @@ class HttpRequest(SelfPublishModel, models.Model):
         return self.date.strftime("%c")
 
     class Meta:
-        ordering = ['-priority']
+        ordering = ['-priority', '-date']

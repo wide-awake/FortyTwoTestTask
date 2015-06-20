@@ -1,0 +1,4 @@
+{% for req in new_elements %}
+	<li><mark>{{ req.pk }} | {{ req.priority }}</mark> <span class="request_date">{{ req.date_formated }}</span> "{{ req.method }} {{ req.url }} {{ req.server_protocol }}"{{ req.status_code }} {{ req.content_len }}</li>
+{% endfor %}
+
