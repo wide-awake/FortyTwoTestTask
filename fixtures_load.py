@@ -7,7 +7,7 @@ from apps.bio.factories import PersonFactory
 PersonFactory().save()
 
 # creating superuser
-login = 'admin'
+login = 'admin2'
 password = login
 User.objects.create_superuser(login, 'e@e.com', password).save()
 print("Firxtures loaded!")

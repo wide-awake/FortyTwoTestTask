@@ -1,12 +1,7 @@
 from django.db import models
 
-from swampdragon.models import SelfPublishModel
-from .serializers import HttpRequestSerializer
 
-
-class HttpRequest(SelfPublishModel, models.Model):
-    serializer_class = HttpRequestSerializer
-
+class HttpRequest(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     method = models.CharField("Request method", max_length=16)
     server_protocol = models.CharField(max_length=16)

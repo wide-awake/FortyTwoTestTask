@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static swampdragon_tags %}
+{% load static %}
 
 {% block title %}
 	{{ object_list.0.overall }} requests so far
@@ -23,12 +23,7 @@
 {% endblock %}
 
 {% block extra_body %}
-{#	{% swampdragon_settings %}#}
-{#	<script type="text/javascript" src="{% static 'swampdragon/js/dist/swampdragon.min.js' %}"></script>#}
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script>
-		var old_overall = {{ object_list.0.overall }};
-	</script>
-	<script type="text/javascript" src="{% static 'js/activity2.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/activity.js' %}"></script>
 {% endblock %}

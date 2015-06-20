@@ -44,9 +44,9 @@ class PersonFormTestCase(TestCase):
         self.p = PersonFactory()
         self.p.save()
         # crete super user
-        self.user = 'admin'
+        self.user = 'admin100'
         self.password = self.user
-        admin = User.objects.create_superuser(self.user, 'e@e.com', self.password)
+        admin = User.objects.create_superuser(self.user, 'ju1e@e.com', self.password)
         admin.save()
 
     def test_admin_login(self):
