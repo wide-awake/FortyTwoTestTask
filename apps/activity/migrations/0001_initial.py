@@ -29,7 +29,7 @@ class Migration(SchemaMigration):
 
     models = {
         u'activity.httprequest': {
-            'Meta': {'ordering': "['-priority']", 'object_name': 'HttpRequest'},
+            'Meta': {'ordering': "['-priority', '-date']", 'object_name': 'HttpRequest'},
             'content_len': ('django.db.models.fields.IntegerField', [], {}),
             'date': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
