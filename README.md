@@ -20,11 +20,6 @@
 1. ``python manage.py models`` - displays all project models and the count of objects in every model
 
 
-### TODO
-1. make fabric works
-2. separate production, tests and local settings
-
-
 ### Recomendations
 * apps in apps/ folder
 * use per-app templates folders
