@@ -4,9 +4,8 @@
 ### Installation
 1. create and active your virtual environment (tested on Python 2.7)
 2. install requirements: ``make req``
-3. run ``redis-server`` (you should install redis first)
-4. run swampdragon server ``python server.py``
-5. run project itself ``make run``
+3. run migrations (initial data in it) ``make migrare``
+3. run project itself ``make run``
 
 
 ### Make Commands
