@@ -3,6 +3,7 @@ from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
+from django.core import serializers
 
 
 class Migration(SchemaMigration):
@@ -31,6 +32,11 @@ class Migration(SchemaMigration):
             ('updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, auto_now_add=True, blank=True)),
         ))
         db.send_create_signal(u'bio', ['ChangeLog'])
+
+        # save data from json
+        json_data = open('../fixtures/initial_data.json')
+        for deserialized_object in serializers.deserialize("json", json_data):
+            deserialized_object.save()
 
 
     def backwards(self, orm):
