@@ -9,6 +9,7 @@ from django.core import serializers
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+
         # Adding model 'Person'
         db.create_table(u'bio_person', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -32,11 +33,6 @@ class Migration(SchemaMigration):
             ('updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, auto_now_add=True, blank=True)),
         ))
         db.send_create_signal(u'bio', ['ChangeLog'])
-
-        # save data from json
-        json_data = open('../fixtures/initial_data.json')
-        for deserialized_object in serializers.deserialize("json", json_data):
-            deserialized_object.save()
 
 
     def backwards(self, orm):
