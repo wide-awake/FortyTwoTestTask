@@ -12,8 +12,8 @@ urlpatterns = patterns(
 )
 
 # for local development
-if settings.DEBUG:
-    urlpatterns += patterns(
-        'django.views.static',
-        #url(r'^static/(.*)$', 'serve', {'document_root': settings.STATIC_ROOT}),
-        url(r'^uploads/(.*)$', 'serve', {'document_root': settings.MEDIA_ROOT}))
+# if settings.DEBUG:
+urlpatterns += patterns(
+    'django.views.static',
+    #url(r'^static/(.*)$', 'serve', {'document_root': settings.STATIC_ROOT}),
+    url(r'^uploads/(.*)$', 'serve', {'document_root': settings.MEDIA_ROOT}))
