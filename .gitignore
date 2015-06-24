@@ -12,7 +12,7 @@ git_ignore
 build
 .noseids
 media
-static
+#static
 *.dat
 3.4/
 env/

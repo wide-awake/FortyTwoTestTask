@@ -1,6 +1,6 @@
 Django==1.6.7
 factory-boy==2.1.1
-# flake8
-# mock
+flake8
+mock
 pillow
 south
