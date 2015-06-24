@@ -13,7 +13,7 @@ class Command(BaseCommand):
         # all of the models and amount of objects in them is single dict ;)
         counted_models = {m: len(m.objects.all()) for m in get_models()}
 
-        self.stdout.write("List of all models, known to ORM with amout of objects in them")
+        self.stdout.write("List of all models, via amout of objects in them")
         for model, amount in counted_models.iteritems():
             output = "%s: %s objects" % (model._meta.module_name, amount)
             self.stdout.write(output)

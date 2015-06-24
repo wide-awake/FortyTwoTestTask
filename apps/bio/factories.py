@@ -49,7 +49,6 @@ class PersonFactory(factory.DjangoModelFactory):
     @factory.lazy_attribute
     def photo(self):
         return ContentFile(
-                factory.django.ImageField()._make_data(
-                    {'width': 200, 'height': 200}
-                ), 'example.jpg'
-            )
+            factory.django.ImageField()._make_data(
+                {'width': 200, 'height': 200}
+            ), 'example.jpg')

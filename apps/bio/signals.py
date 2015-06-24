@@ -5,6 +5,7 @@ from django.db.models.signals import post_save, post_delete
 
 IGNORED_MODELS = ['HttpRequest', 'ChangeLog', 'LogEntry', 'ContentType']
 
+
 @receiver(post_save, dispatch_uid='nope')
 def post_save_signal(sender, created, **kwargs):
     if created and sender.__name__ not in IGNORED_MODELS:

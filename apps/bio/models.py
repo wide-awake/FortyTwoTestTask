@@ -23,7 +23,9 @@ class Person(models.Model):
             output = StringIO.StringIO()
             image.save(output, format='JPEG', quality=75)
             output.seek(0)
-            self.photo = InMemoryUploadedFile(output, 'ImageField', self.photo.name, 'image/jpeg', output.len, None)
+            self.photo = InMemoryUploadedFile(output, 'ImageField',
+                                              self.photo.name, 'image/jpeg',
+                                              output.len, None)
         # replace image instead
         try:
             current = Person.objects.get(id=self.id)

@@ -14,8 +14,9 @@ class HttpRequestList(ListView):
 def ajax_polling(request):
     elements_so_far = request.GET['elements_so_far']
     try:
-        new_elements = HttpRequest.objects.all().order_by('priority', 'date')[elements_so_far:]
-        return render_to_response("activity/single.html", {'new_elements': new_elements})
+        new_elements = HttpRequest.objects.all().\
+            order_by('priority', 'date')[elements_so_far:]
+        return render_to_response(
+            "activity/single.html", {'new_elements': new_elements})
     except IndexError:
         return HttpResponse(status=200)
-

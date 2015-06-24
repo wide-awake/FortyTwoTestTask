@@ -33,4 +33,3 @@ class PersonEdit(FormView):
 
     form_class = PersonForm
     template_name = 'bio/edit.html'
-

@@ -46,11 +46,13 @@ class PersonFormTestCase(TestCase):
         # crete super user
         self.user = 'admin100'
         self.password = self.user
-        admin = User.objects.create_superuser(self.user, 'ju1e@e.com', self.password)
+        admin = User.objects.create_superuser(self.user,
+                                              'ju1e@e.com', self.password)
         admin.save()
 
     def test_admin_login(self):
-        self.assertEqual(Client().login(username=self.user, password=self.password), True)
+        self.assertEqual(Client().login(username=self.user,
+                                        password=self.password), True)
 
     def test_form_saving(self):
         form_url = reverse('bio:edit')

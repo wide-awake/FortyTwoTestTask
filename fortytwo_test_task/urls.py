@@ -11,10 +11,3 @@ urlpatterns = patterns(
 
     url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-# for local development
-# if settings.DEBUG:
-#     urlpatterns += patterns(
-#         'django.views.static',
-#         url(r'^static/(.*)$', 'serve', {'document_root': settings.STATIC_ROOT}),
-#         url(r'^uploads/(.*)$', 'serve', {'document_root': settings.MEDIA_ROOT}))

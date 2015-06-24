@@ -123,9 +123,6 @@ STATICFILES_DIRS = (
 
 # Template Settings
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, 'templates'),
 )
 
@@ -143,7 +140,8 @@ SOUTH_TESTS_MIGRATE = False
 #     'disable_existing_loggers': True,
 #     'formatters': {
 #         'verbose': {
-#             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+#             'format': '%(levelname)s %(asctime)s
+#                        %(module)s %(process)d %(thread)d %(message)s'
 #         },
 #     },
 #     'handlers': {
