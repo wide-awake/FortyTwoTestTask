@@ -2,6 +2,7 @@ import StringIO
 from PIL import Image as Img
 
 from django.db import models
+from django.utils.html import mark_safe
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
@@ -35,6 +36,11 @@ class Person(models.Model):
             pass
 
         super(Person, self).save(*args, **kwargs)
+
+    def admin_image(self):
+        return mark_safe('<img src="%s"/>' % self.photo.url)
+
+    admin_image.short_description = "Photo Preview"
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)

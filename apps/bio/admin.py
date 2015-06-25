@@ -4,7 +4,8 @@ from .models import Person, ChangeLog
 
 class PersonAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'date_of_birth', 'email',
-                    'jabber', 'skype', 'photo')
+                    'jabber', 'skype')
+    readonly_fields = ('admin_image',)
 
 
 class ChangeLogAdmin(admin.ModelAdmin):
