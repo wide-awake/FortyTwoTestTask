@@ -38,7 +38,7 @@ class Person(models.Model):
         super(Person, self).save(*args, **kwargs)
 
     def admin_image(self):
-        return mark_safe('<img src="%s"/>' % self.photo.url)
+        return mark_safe('<img src="%s" width="75px"/>' % self.photo.url)
 
     admin_image.short_description = "Photo Preview"
 
