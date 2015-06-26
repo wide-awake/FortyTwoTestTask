@@ -8,13 +8,16 @@ IGNORED_MODELS = ['HttpRequest', 'ChangeLog', 'LogEntry', 'ContentType']
 
 @receiver(post_save, dispatch_uid='nope')
 def post_save_signal(sender, created, **kwargs):
-    if created and sender.__name__ not in IGNORED_MODELS:
+    if sender.__name__ in IGNORED_MODELS:
+        return
+    if created:
         ChangeLog.objects.create(model_name=sender.__name__, action='create')
-    elif not created and sender.__name__ not in IGNORED_MODELS:
+    else:
         ChangeLog.objects.create(model_name=sender.__name__, action='update')
 
 
 @receiver(post_delete, dispatch_uid='nope')
 def post_delete_signal(sender, **kwargs):
-    if sender.__name__ not in IGNORED_MODELS:
-        ChangeLog.objects.create(model_name=sender.__name__, action='delete')
+    if sender.__name__ in IGNORED_MODELS:
+        return
+    ChangeLog.objects.create(model_name=sender.__name__, action='delete')

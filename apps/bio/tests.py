@@ -8,11 +8,14 @@ from .models import Person, ChangeLog
 
 
 class BioBaseTestCase(TestCase):
+    """ dasd """
 
     def setUp(self):
+        """ Scrub all the possible data """
         Person.objects.all().delete()
 
     def test_person_context(self):
+        """ Check if data is in context """
         p = PersonFactory()
         p.save()
         url = reverse('bio:single')
@@ -22,6 +25,7 @@ class BioBaseTestCase(TestCase):
         self.assertEqual(p, person_context)
 
     def test_template(self):
+        """ Check if template is right"""
         PersonFactory().save()
         url = reverse('bio:single')
         response = self.client.get(url)
@@ -29,6 +33,7 @@ class BioBaseTestCase(TestCase):
         self.assertTemplateUsed(response, 'bio/person.html')
 
     def test_view(self):
+        """ Respose code should be 200 """
         PersonFactory().save()
         url = reverse('bio:single')
         response = self.client.get(url)
@@ -39,7 +44,7 @@ class BioBaseTestCase(TestCase):
 class PersonFormTestCase(TestCase):
 
     def setUp(self):
-        # reload person bio
+        """ Reload person bio and create admin user ti get log-in """
         Person.objects.all().delete()
         self.p = PersonFactory()
         self.p.save()
@@ -51,10 +56,12 @@ class PersonFormTestCase(TestCase):
         admin.save()
 
     def test_admin_login(self):
+        """ Check if admin user able to log-in """
         self.assertEqual(Client().login(username=self.user,
                                         password=self.password), True)
 
     def test_form_saving(self):
+        """ Test if data can be saved true the form """
         form_url = reverse('bio:edit')
         ajax_url = reverse('bio:ajax-update')
         # log in to acscess page
@@ -88,6 +95,7 @@ class PersonFormTestCase(TestCase):
         self.assertEqual(instance.other, new_data.other)
 
     def test_form_page_status(self):
+        """ Response code should be 200 """
         c = Client()
         c.login(username=self.user, password=self.password)
         form_url = reverse('bio:edit')
@@ -102,6 +110,7 @@ class TemplateTagsTestCase(TestCase):
         PersonFactory().save()
 
     def test_edit_link_templatetag(self):
+        """ Edit link shold be right """
         r = self.client.get(reverse('bio:single'))
         self.assertIn('admin/bio/person/1/', r.content)
 
@@ -112,6 +121,7 @@ class SignalTestCase(TestCase):
         PersonFactory().save()
 
     def test_signal_on_create(self):
+        """ Check if signals work on object creation event """
         p = PersonFactory()
         count = ChangeLog.objects.all().count()
         p.save()
@@ -119,6 +129,7 @@ class SignalTestCase(TestCase):
         self.assertEqual(count + 1, new_count)
 
     def test_signal_on_update(self):
+        """ Check if signals work on object update event """
         PersonFactory().save()
         p = Person.objects.first()
         count = ChangeLog.objects.all().count()
@@ -128,6 +139,7 @@ class SignalTestCase(TestCase):
         self.assertEqual(count + 1, new_count)
 
     def test_signal_on_delete(self):
+        """ Check if signals work on object delete event """
         PersonFactory().save()
         p = Person.objects.first()
         count = ChangeLog.objects.all().count()

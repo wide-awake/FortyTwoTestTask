@@ -40,8 +40,7 @@ class Person(models.Model):
     def admin_image(self):
         if self.photo:
             return mark_safe('<img src="%s" width="75px"/>' % self.photo.url)
-        else:
-            return '<no phoro>'
+        return 'no photo, so far'
 
     admin_image.short_description = "Photo Preview"
 

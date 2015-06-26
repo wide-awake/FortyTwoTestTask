@@ -126,7 +126,6 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
-#
 LOGIN_URL = "/admin"
 
 LOGIN_REDIRECT_URL = '/edit'

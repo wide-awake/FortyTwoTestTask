@@ -11,28 +11,33 @@ class ActivityBaseTestCase(TestCase):
         HttpRequest.objects.all().delete()
 
     def test_generate_model_from_response(self):
+        """ Every time we open a page  HttpRequest instans should appear """
         url = reverse('activity:list')
         self.client.get(url)
         # check if HttpRequest model is created
         self.assertEqual(len(HttpRequest.objects.all()), 1)
 
     def test_generate_model_from_404_response(self):
+        """ Test middlware working for 404 """
         response = self.client.get('/some_nonsense_url')
         # check if HttpRequest model is created
         if response.status_code == 404:
             self.assertEqual(HttpRequest.objects.last().status_code, 404)
 
     def test_template(self):
+        """ Check if template is right """
         url = reverse('activity:list')
         response = self.client.get(url)
         self.assertTemplateUsed(response, 'activity/list.html')
 
     def test_view(self):
+        """ Response status should be 200 """
         url = reverse('activity:list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_request_priority(self):
+        """ Request shoud be sorted by priority """
         # create person for page rendering
         PersonFactory().save()
         # generate 3x http requests
