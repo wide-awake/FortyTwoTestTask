@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.conf.urls import include, patterns, url
-from django.conf.urls.static import static
 from django.contrib import admin
 admin.autodiscover()
 
@@ -15,7 +14,10 @@ urlpatterns = patterns(
 if settings.DEBUG:
     urlpatterns += patterns(
         'django.views.static',
-        url(r'^static/(.*)$', 'serve', {'document_root': settings.STATIC_ROOT}),
-        url(r'^static/(.*)$', 'serve', {'document_root': settings.STATICFILES_DIRS[0]}),
-        url(r'^uploads/(.*)$', 'serve', {'document_root': settings.MEDIA_ROOT}))
-
+        url(r'^static/(.*)$', 'serve', {'document_root':
+                                        settings.STATIC_ROOT}),
+        url(r'^static/(.*)$', 'serve', {'document_root':
+                                        settings.STATICFILES_DIRS[0]}),
+        url(r'^uploads/(.*)$', 'serve', {'document_root':
+                                         settings.MEDIA_ROOT}),
+    )
