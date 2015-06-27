@@ -9,6 +9,7 @@
 
 
 ### Make Commands
+1. ``make shell`` - run shell_plus
 2. ``make syncdb`` - sync datavase
 3. ``make test`` - run tests
 4. ``make load`` - load fixtures
