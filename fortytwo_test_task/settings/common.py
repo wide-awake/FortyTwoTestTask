@@ -28,8 +28,7 @@ SECRET_KEY = 'x=c0_e(onjn^80irdy2c221#)2t^qi&6yrc$31i(&ti*_jf3l8'
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['127.0.0.1',
-                 '46.101.181.20']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -135,31 +134,34 @@ LOGIN_REDIRECT_URL = '/edit'
 SOUTH_TESTS_MIGRATE = False
 
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': True,
-#     'formatters': {
-#         'verbose': {
-#             'format': '%(levelname)s %(asctime)s
-#                        %(module)s %(process)d %(thread)d %(message)s'
-#         },
-#     },
-#     'handlers': {
-#         'console': {
-#             'level': 'NOTSET',
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'verbose'
-#         }
-#     },
-#     'loggers': {
-#         '': {
-#             'handlers': ['console'],
-#             'level': 'NOTSET',
-#         },
-#         'django.request': {
-#             'handlers': ['console'],
-#             'propagate': False,
-#             'level': 'ERROR'
-#         }
-#     }
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)'
+                      's%(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'INFO'
+        }
+    }
+}
