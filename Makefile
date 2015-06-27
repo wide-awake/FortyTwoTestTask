@@ -28,3 +28,7 @@ load:
 req:
 	@echo "Installing requirements"
 	@pip install --exists-action=s -r requirements.txt
+
+shell:
+	@echo "Running shell plus"
+	@python manage.py shell_plus

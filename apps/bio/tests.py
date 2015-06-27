@@ -8,37 +8,48 @@ from .models import Person, ChangeLog
 
 
 class BioBaseTestCase(TestCase):
-    """ dasd """
 
     def setUp(self):
-        """ Scrub all the possible data """
+        # Scrub all the possible data
         Person.objects.all().delete()
+        self.single_url = reverse('bio:single')
 
     def test_person_context(self):
-        """ Check if data is in context """
+        """ Check if Person data is in context """
         p = PersonFactory()
         p.save()
-        url = reverse('bio:single')
-        response = self.client.get(url)
+        response = self.client.get(self.single_url)
         person_context = response.context['object']
         # check if person data in context
         self.assertEqual(p, person_context)
 
     def test_template(self):
-        """ Check if template is right"""
+        """ Check if template is right """
         PersonFactory().save()
-        url = reverse('bio:single')
-        response = self.client.get(url)
+        response = self.client.get(self.single_url)
         # check we've used the right template
         self.assertTemplateUsed(response, 'bio/person.html')
 
     def test_view(self):
         """ Respose code should be 200 """
         PersonFactory().save()
-        url = reverse('bio:single')
-        response = self.client.get(url)
+        response = self.client.get(self.single_url)
         # check page status code
         self.assertEqual(response.status_code, 200)
+
+    def test_multiple_persons(self):
+        """
+        First Person object should be a king.
+        In case we accidently add multiple persons
+        """
+        first = PersonFactory()
+        first.save()
+        # second one
+        PersonFactory().save()
+        response = self.client.get(self.single_url)
+        person_context = response.context['object']
+        # check if person data in context, not second
+        self.assertEqual(first, person_context)
 
 
 class PersonFormTestCase(TestCase):
