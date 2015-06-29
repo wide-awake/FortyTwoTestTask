@@ -12,27 +12,25 @@ class BioBaseTestCase(TestCase):
     def setUp(self):
         # Scrub all the possible data
         Person.objects.all().delete()
+        self.p = PersonFactory()
+        self.p.save()
         self.single_url = reverse('bio:single')
 
     def test_person_context(self):
         """ Check if Person data is in context """
-        p = PersonFactory()
-        p.save()
         response = self.client.get(self.single_url)
         person_context = response.context['object']
         # check if person data in context
-        self.assertEqual(p, person_context)
+        self.assertEqual(self.p, person_context)
 
     def test_template(self):
         """ Check if template is right """
-        PersonFactory().save()
         response = self.client.get(self.single_url)
         # check we've used the right template
         self.assertTemplateUsed(response, 'bio/person.html')
 
     def test_view(self):
         """ Respose code should be 200 """
-        PersonFactory().save()
         response = self.client.get(self.single_url)
         # check page status code
         self.assertEqual(response.status_code, 200)
@@ -42,14 +40,12 @@ class BioBaseTestCase(TestCase):
         First Person object should be a king.
         In case we accidently add multiple persons
         """
-        first = PersonFactory()
-        first.save()
         # second one
         PersonFactory().save()
         response = self.client.get(self.single_url)
         person_context = response.context['object']
         # check if person data in context, not second
-        self.assertEqual(first, person_context)
+        self.assertEqual(self.p, person_context)
 
 
 class PersonFormTestCase(TestCase):
