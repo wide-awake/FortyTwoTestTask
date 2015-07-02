@@ -5,3 +5,4 @@ mock
 pillow
 south
 42cc-pystyle
+django-extensions
