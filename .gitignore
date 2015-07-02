@@ -1,4 +1,5 @@
 *.sqlite3
+debug.log
 *.pyc
 *.pyo
 *.swp
