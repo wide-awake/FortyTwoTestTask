@@ -47,6 +47,20 @@ class BioBaseTestCase(TestCase):
         # check if person data in context, not second
         self.assertEqual(self.p, person_context)
 
+    def test_strictly_one_person(self):
+        """
+        Strictly one person for in homepage context.
+        """
+        # make up to 10 persons
+        for _ in list(range(10)):
+            PersonFactory().save()
+        response = self.client.get(self.single_url)
+        persons = Person.objects.all()
+        number_of_objects = 0
+        for person in persons:
+            number_of_objects += int(person == response.context['object'])
+        self.assertEqual(number_of_objects, 1)
+
 
 class PersonFormTestCase(TestCase):
 
