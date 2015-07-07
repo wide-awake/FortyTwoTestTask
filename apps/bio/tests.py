@@ -49,7 +49,7 @@ class BioBaseTestCase(TestCase):
 
     def test_strictly_one_person(self):
         """
-        Strictly one person for in homepage context.
+        Strictly one person in homepage context.
         """
         # make up to 10 persons
         for _ in list(range(10)):
