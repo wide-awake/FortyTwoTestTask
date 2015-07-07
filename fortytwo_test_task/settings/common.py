@@ -54,7 +54,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'activity.middlware.ReqCatchMiddleware',
-    'bio.middlware.FileLoggerMiddleware',
 )
 
 

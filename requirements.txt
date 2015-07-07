@@ -6,3 +6,4 @@ pillow
 south
 42cc-pystyle
 django-extensions
+pytz
