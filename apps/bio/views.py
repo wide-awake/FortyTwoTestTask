@@ -6,20 +6,20 @@ from django.http import HttpResponse
 
 from .models import Person
 from .forms import PersonForm
-from .filelogger import log_me, modellog
+from .filelogger import model_log, req_log
 
 
-@log_me
 def single(request):
     p = Person.objects.all()[0]
-    modellog(p)
+    model_log(p)
+    req_log(request)
     return render_to_response('bio/person.html', {'object': p})
 
 
-@log_me
 def ajax_update(request):
     p = Person.objects.all()[0]
-    modellog(p)
+    model_log(p)
+    req_log(request)
     if request.POST:
         form = PersonForm(request.POST, request.FILES, instance=p)
         if form.is_valid():
