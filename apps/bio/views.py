@@ -3,7 +3,6 @@ from datetime import datetime
 
 from django.shortcuts import render_to_response
 from django.views.generic import FormView
-from django.forms.models import model_to_dict
 from django.http import HttpResponse
 from django.forms.models import model_to_dict
 
