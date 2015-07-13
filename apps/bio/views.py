@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.views.generic import FormView
 from django.forms.models import model_to_dict
 from django.http import HttpResponse
+from django.forms.models import model_to_dict
 
 from .models import Person
 from .forms import PersonForm
@@ -13,7 +14,7 @@ from .filelogger import logger
 
 def single(request):
     p = Person.objects.all()[0]
-    logger.debug(p)
+    logger.debug(model_to_dict(p))
     logger.info("[{}] path: {}, GET: {}, POST: {}".format(
         datetime.now(),
         request.path,
@@ -24,7 +25,7 @@ def single(request):
 
 def ajax_update(request):
     p = Person.objects.all()[0]
-    logger.debug(p)
+    logger.debug(model_to_dict(p))
     logger.info("[{}] path: {}, GET: {}, POST: {}".format(
         datetime.now(),
         request.path,
